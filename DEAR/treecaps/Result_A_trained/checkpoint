@@ -1,0 +1,2 @@
+model_checkpoint_path: "tree_network.ckpt"
+all_model_checkpoint_paths: "tree_network.ckpt"

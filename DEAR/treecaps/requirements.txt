@@ -1,0 +1,33 @@
+### Dependencies for TreeCaps			  	###
+###                                             ###
+### To install, run:                            ###
+###      $ pip install -r requirements.txt      ###
+###                                             ###
+###################################################
+
+## Keras neural-network library ##
+keras
+
+## Tensorflow neural-network library ##
+tensorflow
+
+## MSGPack ##
+msgpack
+
+## NumPy python library##
+numpy
+
+## ProgressBar ##
+progressbar2
+
+## RAdam Optimizer ##
+keras-rectified-adam
+
+## Scikit-Learn ##
+scikit-learn
+
+##  TQDM ##
+tqdm
+
+## Scipy ##
+scipy

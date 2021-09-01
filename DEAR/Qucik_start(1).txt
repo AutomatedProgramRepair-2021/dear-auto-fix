@@ -1,0 +1,12 @@
+1. 先下载下列数据:
+BigFix: https://drive.google.com/open?id=1KL3M-BbisVLWXyvn05V6huSLNUby_9qN
+CPatMiner: https://drive.google.com/open?id=1M_0dRYqhCMh26GQbnX4Igp_2jSrTS1tV 
+把数据存到DEAR/data （为减小训练量，只测试，可以删除大部分，留下一小部分测试）
+2. 提前设置defects4J和D4J_HOME。 其中defects4J是path2defects4j/framework/bin;D4J_HOME是path2defects4j
+3. 先跑DEAR/approach/sbfl/setup.sh
+4. 在DEAR/approach/文件夹目录下运行DEAR/approach/get_fl_data.py
+5. 再跑DEAR/approach/prepare_bert_data.py
+6.0 下载pre-train model：https://github.com/google-research/bert#pre-trained-models 
+6.1 改./run_bert.sh
+6.2 再在DEAR/bert/文件夹目录下运行./run_bert.sh
+7. 再跑DEAR/approach/main.py
