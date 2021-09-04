@@ -1,5 +1,6 @@
 import numpy as np
 import sklearn as sk
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 def set_threshold(input_list, threshold):
@@ -11,8 +12,16 @@ def set_threshold(input_list, threshold):
             fixed_list.append(0)
     return fixed_list
 
-    
-def validate()
+
+def get_score(input_a, input_b):
+    cos = cosine_similarity(input_a, input_b)
+    cos = np.array(cos)
+    cos = np.mean(cos)
+    if cos < 0:
+        cos = cos * -1
+    if cos < 0.05:
+        cos = cos + 0.05
+    return cos
 
 
 def evaluation(predicted_d, dataset):

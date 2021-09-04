@@ -1,5 +1,4 @@
 # Known point 
-- [ ] Hardcode DATA_DIR in run_bert.sh?
 - [ ] Pretrain model link expired
 
 # DEAR: A Novel Deep Learning-based Approach for Automated Program Repair
@@ -52,21 +51,22 @@ Please check all other required packages in the [requirement.txt](https://github
 4. The parameter ```rq``` in the ```main.py``` can be modified for different experiments.
 
 ## Instruction
-1. Download BigFix and CPatMiner from the given link in [Dataset](#Dataset) the directory DEAR/data. Feel free to reduce the size for a small demo.
+1. Download BigFix and CPatMiner from the given link in [Dataset](#Dataset) to the directory DEAR/data. Feel free to reduce the size for a small demo.
 
 2. If you have setup ```D4J_HOME```, check if ```DEFECTS4J_HOME``` is also set to point to ```path2defects4j```
 
 3. Run ```DEAR/approach/sbfl/setup.sh```
 
-4. Run ```get_fl_data.py``` under the directory  ```Dear/approach```
+4. Run ```get_fl_data.py``` in directory  ```DEAR/approach```
 
 5. Run ```prepare_bert_data.py```
 
 6. Download the [Pre-train Model](https://github.com/google-research/bert#pre-trained-models)  from Bert [4] and change ```BERT_BASE_DIR``` in  ```DEAR/bert/run_bert.sh``` to point to the model just downloaded.
 
-7. Run ```./run_bert.sh``` under the directory ```Dear/bert```
+7. Run ```./run_bert.sh``` in directory ```Dear/bert```
 
-8. Run ```Dear/approach/main.py```
+8. Run ```main.py```in directory  ```DEAR/approach```
+
 
 ## Reference
 

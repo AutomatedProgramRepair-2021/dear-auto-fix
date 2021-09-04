@@ -8,6 +8,21 @@ import zipfile
 import io
 
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        pass
+
+    try:
+        import unicodedata
+        unicodedata.numeric(s)
+        return True
+    except (TypeError, ValueError):
+        pass
+
+
 def format_data(data_dir, path_to_data):
     print("Processing data...")
     mrpc_dir = os.path.join(data_dir, "MRPC")
@@ -21,27 +36,50 @@ def format_data(data_dir, path_to_data):
 
     with io.open(mrpc_test_file, encoding='utf-8') as data_fh, \
             io.open(os.path.join(mrpc_dir, "test.tsv"), 'w', encoding='utf-8') as test_fh:
-        header = data_fh.readline()
-        test_fh.write("index\t#1 ID\t#2 ID\t#1 String\t#2 String\n")
-        for idx, row in enumerate(data_fh):
+        body = data_fh.readlines()
+       # test_fh.write("index\t#1 ID\t#2 ID\t#1 String\t#2 String\n")
+        for i in range(len(body)):
             try:
-                label, id1, id2, s1, s2 = row.strip().split('\t')
+                if i ==0:
+                    continue
+                body[i] = body[i].strip().split('\t')
+                while '' in body[i]:
+                    body[i].remove('')
+                for j in range(len(body[i])):
+                    body[i][j] = body[i][j].strip()
+                body[i] = "\t".join(body[i])
+                label, id1, id2, s1, s2 = body[i].strip().split('\t')
+                if is_number(label) and is_number(id1) and is_number(id2):
+                    test_fh.write("%d\t%s\t%s\t%s\t%s\n" % (i, id1, id2, s1, s2))
             except:
-                print(idx)
-                print(row.strip().split('\t'))
-            test_fh.write("%d\t%s\t%s\t%s\t%s\n" % (idx, id1, id2, s1, s2))
+                print(i)
+                print(body[i].strip().split('\t'))
+
 
 
     with io.open(mrpc_train_file, encoding='utf-8') as data_fh, \
-         io.open(os.path.join(mrpc_dir, "train.tsv"), 'w', encoding='utf-8') as train_fh:
-        header = data_fh.readline()
-        train_fh.write(header)
-        for row in data_fh:
+         io.open(os.path.join(mrpc_dir, "train.tsv"), 'w', encoding='utf-8') as train_fh, io.open(os.path.join(mrpc_dir, "dev.tsv"), 'w', encoding='utf-8') as dev_fh:
+        body = data_fh.readlines()
+       # train_fh.write(header)
+        for i in range(len(body)):
             try:
-                label, id1, id2, s1, s2 = row.strip().split('\t')
+                if i == 0:
+                    continue
+                body[i] = body[i].strip().split('\t')
+                while '' in body[i]:
+                    body[i].remove('')
+                for j in range(len(body[i])):
+                    body[i][j] = body[i][j].strip()
+                body[i] = "\t".join(body[i])
+                label, id1, id2, s1, s2 = body[i].strip().split('\t')
+                if is_number(label) and is_number(id1) and is_number(id2):
+                    if i <=len(body):
+                        train_fh.write("%s\t%s\t%s\t%s\t%s\n" % (label, id1, id2, s1, s2))
+                    else:
+                        dev_fh.write("%s\t%s\t%s\t%s\t%s\n" % (label, id1, id2, s1, s2))
             except:
-                print(row.strip().split('\t'))
-            train_fh.write("%s\t%s\t%s\t%s\t%s\n" % (label, id1, id2, s1, s2))
+                print(body[i].strip().split('\t'))
+
                 
     print("\tCompleted!")
     

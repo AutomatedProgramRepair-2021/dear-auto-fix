@@ -1,4 +1,4 @@
-from generating_longtrees import generating_longtrees as gl
+#from generating_longtrees import generating_longtrees as gl
 import gensim.models as g
 import json
 from keras.backend import ones_like
@@ -8,8 +8,8 @@ from keras.optimizers import adam
 from keras.layers import Conv1D, Dense, Reshape, Concatenate, Flatten, Activation, Dropout, Softmax
 from keras.models import Input, Model, load_model
 from keras_self_attention import SeqSelfAttention
-from keras_multi_head import MultiHeadAttention
-from adding_weight import adding_weight
+#from keras_multi_head import MultiHeadAttention
+#from adding_weight import adding_weight
 import numpy as np
 import os, re
 from gensim.models import Word2Vec
@@ -208,22 +208,22 @@ def run_expansion():
                 testing_data.append(list_test)
     output = model.predict(testing_data)
     # DataDepAnalysis from line 211 to line 221
-    for i in range(len(input_data_))
+    for i in range(len(input_data_)):
         for j in range(len(input_data_[i])):
             for k in range(len(input_data_[i][j])):
                 if j == 6:
                     continue
                 else:
-                    regEx="[`~!@#$%^&*()_\\-+=|{}':;',\\[\\].<>/?~!@#?%……&*()——+|{}??‘;:”“’?,??]"
-                    if !re.match(regEx, input_data_[i][j][k]):
+                    regEx="[`~!@#$%^&*()_\\-+=|{}':;',\\[\\].<>/?~!@#?%ï¿½ï¿½&*()ï¿½ï¿½+|{}??ï¿½;:ï¿½ï¿½ï¿½?,??]"
+                    if not re.match(regEx, input_data_[i][j][k]):
                         if input_data_[i][j][k] in input_data_[i][j]:
                             output[i][j] == 1
                             break
     output_file = open(path + "/data/expanded.txt","a")
     for i in range(len(testing_data)):
-        for j in range(len(testing_data[i]))
+        for j in range(len(testing_data[i])):
             print(testing_data[i][j], file = output_file)
-            print(output[i][j], file output_file)
+            print(output[i][j], file=output_file)
         print("=====", file = output_file)
     
     

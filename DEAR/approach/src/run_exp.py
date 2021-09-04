@@ -2,11 +2,13 @@ import sys
 import process
 import model
 import subprocess
-import expansion
+import numpy as np
+#from expansion import expansion
 
 def main(argv):
-    expansion.run_expansion()
-    if len(argv > 1):
+    #expansion.run_expansion()
+    rq = "all"
+    if len(argv) > 1:
         print("Only one paramter please")
         exit()
     else:
@@ -19,8 +21,9 @@ def main(argv):
             process.preprocess("cpatminer")
             process.preprocess("bigfix")
         else:
-            print("Incorrect RQ number!")
-            exit()
+            if rq != "all":
+                print("Incorrect RQ number!")
+                exit()
     if rq == "1":
         model.run_model("cpatminer-defects4j")
     if rq == "2":
@@ -28,6 +31,11 @@ def main(argv):
         model.run_model("bigfix")
     if rq == "3":
         model.run_model("cpatminer-defects4j")
+    if rq == "all":
+        output = process.process_data()
+        cleaned = process.clean_data(output[0], output[1], output[2], output[3])
+        prepareed_data = process.data_prepare(cleaned)
+        model.model_process(prepareed_data)
     
 
 if __name__ == "__main__":

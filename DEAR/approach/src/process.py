@@ -5,6 +5,8 @@ Preprocessing script for Stanford Sentiment Treebank data.
 
 import os
 import glob
+from gensim.models import word2vec
+import numpy as np
 
 #
 # Trees and tree loading
@@ -354,3 +356,149 @@ def preprocess():
     write_labels(train_dir, dictionary)
     write_labels(dev_dir, dictionary)
     write_labels(test_dir, dictionary)
+
+
+def process_data():
+    path_p = os.path.abspath(os.path.dirname(os.getcwd()))
+    ID_num = 0
+    data_1 = []
+    data_1_fix = []
+    data_2 = []
+    data_2_fix = []
+    for i in range(44154):
+        try:
+            bug_id = i + 1
+            source_file_root = path_p + "/data/CPatMiner_/" + str(bug_id) + "/"
+            label_file = open(source_file_root + "removed_lines.txt")
+            label_file_2 = open(source_file_root + "added_lines.txt")
+            label_lines = label_file.readlines()
+            label_lines_2 = label_file_2.readlines()
+            Code_ = ""
+            fix = ""
+            for j in range(len(label_lines)):
+                if not label_lines[j].strip().isnumeric():
+                    file_name_ = label_lines[j].strip()
+                else:
+                    line_num = label_lines[j].strip()
+                    new_file_read = open(source_file_root + "before/" + file_name_)
+                    lines_data = new_file_read.readlines()
+                    Code_= Code_ + " "+ lines_data[int(line_num) - 1].strip()
+            for j in range(len(label_lines_2)):
+                if not label_lines_2[j].strip().isnumeric():
+                    file_name_ = label_lines_2[j].strip()
+                else:
+                    line_num = label_lines_2[j].strip()
+                    new_file_read = open(source_file_root + "after/" + file_name_)
+                    lines_data = new_file_read.readlines()
+                    fix = fix + " " + lines_data[int(line_num) - 1].strip()
+            data_1.append(Code_)
+            data_1_fix.append(fix)
+        except:
+            continue
+    for i in range(44154):
+        try:
+            bug_id = i + 1
+            source_file_root = path_p + "/data/BigFix_/" + str(bug_id) + "/"
+            label_file = open(source_file_root + "removed_lines.txt")
+            label_file_2 = open(source_file_root + "added_lines.txt")
+            label_lines = label_file.readlines()
+            label_lines_2 = label_file_2.readlines()
+            Code_ = ""
+            fix = ""
+            for j in range(len(label_lines)):
+                if not label_lines[j].strip().isnumeric():
+                    file_name_ = label_lines[j].strip()
+                else:
+                    line_num = label_lines[j].strip()
+                    new_file_read = open(source_file_root + "before/" + file_name_)
+                    lines_data = new_file_read.readlines()
+                    Code_= Code_ + " "+ lines_data[int(line_num) - 1].strip()
+            for j in range(len(label_lines_2)):
+                if not label_lines_2[j].strip().isnumeric():
+                    file_name_ = label_lines_2[j].strip()
+                else:
+                    line_num = label_lines_2[j].strip()
+                    new_file_read = open(source_file_root + "after/" + file_name_)
+                    lines_data = new_file_read.readlines()
+                    fix = fix + " " + lines_data[int(line_num) - 1].strip()
+            data_2.append(Code_)
+            data_2_fix.append(fix)
+        except:
+            continue
+    return data_1, data_1_fix, data_2, data_2_fix
+
+
+def clean_data(data_1, data_1_fix, data_2, data_2_fix):
+    all_data = []
+    for data in data_1:
+        lines = data.split(" ")
+        for line in lines:
+            all_data.append(line)
+    for data in data_1_fix:
+        lines = data.split(" ")
+        for line in lines:
+            all_data.append(line)
+    for data in data_2:
+        lines = data.split(" ")
+        for line in lines:
+            all_data.append(line)
+    for data in data_2_fix:
+        lines = data.split(" ")
+        for line in lines:
+            all_data.append(line)
+    model = word2vec.Word2Vec([all_data], size=128, min_count=1)
+    data_1_output = []
+    data_1_fix_output = []
+    data_2_output = []
+    data_2_fix_output = []
+    for data in data_1:
+        lines = data.split(" ")
+        data_1_output_ = []
+        for line in lines:
+            try:
+                data_1_output_.append(model.wv[line])
+            except:
+                data_1_output_.append(np.zeros(128))
+        data_1_output.append(data_1_output_)
+    for data in data_1_fix:
+        lines = data.split(" ")
+        data_1_fix_output_ = []
+        for line in lines:
+            try:
+                data_1_fix_output_.append(model.wv[line])
+            except:
+                data_1_fix_output_.append(np.zeros(128))
+        data_1_fix_output.append(data_1_fix_output_)
+    for data in data_2:
+        lines = data.split(" ")
+        data_2_output_ = []
+        for line in lines:
+            try:
+                data_2_output_.append(model.wv[line])
+            except:
+                data_2_output_.append(np.zeros(128))
+        data_2_output.append(data_2_output_)
+    for data in data_2_fix:
+        lines = data.split(" ")
+        data_2_fix_output_ = []
+        for line in lines:
+            try:
+                data_2_fix_output_.append(model.wv[line.strip()])
+            except:
+                data_2_fix_output_.append(np.zeros(128))
+        data_2_fix_output.append(data_2_fix_output_)
+    return data_1_output, data_1_fix_output, data_2_output, data_2_fix_output
+
+
+def data_prepare(input_data):
+    for input in input_data:
+        inner_max_len = max(map(len, input))
+        addon = []
+        for i in range(128):
+            addon.append(0)
+        addon = np.array([addon])
+        for i in range(len(input)):
+            input[i] = np.array(input[i])
+            for j in range(inner_max_len - len(input[i])):
+                input[i] = np.concatenate((input[i], addon), axis=0)
+    return input_data
