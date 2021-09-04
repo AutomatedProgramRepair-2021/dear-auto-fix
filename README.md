@@ -1,6 +1,3 @@
-# Known point 
-- [ ] Pretrain model link expired
-
 # DEAR: A Novel Deep Learning-based Approach for Automated Program Repair
 
 <p aligh="center"> This repository contains the code for <b>DEAR: A Novel Deep Learning-based Approach for Automated Program Repair</b> </p>
