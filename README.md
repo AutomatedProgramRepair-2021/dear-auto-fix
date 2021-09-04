@@ -2,11 +2,8 @@
 
 <p aligh="center"> This repository contains the code for <b>DEAR: A Novel Deep Learning-based Approach for Automated Program Repair</b> and the Page (https://automatedprogramrepair-2021.github.io/DEAR-Public/) that has some visualizd data. </p>
 
-## Introduction
-
-We present DEAR, a DL-based approach that supports auto-fixing for the bugs that require changes at once to one or multiple hunks and one or multiple consecutive statements.We first design a novel fault localization (FL) technique for multi-hunk, multi-statement fixes that combines traditional  spectrum-based (SB) FL with deep learning and data-flow analysis. It takes the buggy statements returned by the SBFL, and detects the buggy hunks to be fixed at once and expands a buggy statement s in a hunk to include other suspicious statements from s. We enhance a two-tier, tree-based LSTM model that incorporates cycle training and uses a divide-andconquer strategy to learn proper code transformations for fixing multiple statements in the suitable fixing context consisting of surrounding subtrees. We conducted several experiments to evaluate DEAR on three datasets: Defects4J (395 bugs), BigFix (+26k bugs), and CPatMiner (+44k bugs). In CPatMiner, DEAR fixes 71 and 164 more bugs, including 52 and 61 more multi-hunk/multistatement bugs, than existing DL-based APR tools. Among 667 fixed bugs, there are 169 (25.3%) multi-hunk/multi-statement ones. On Defects4J, it outperforms those tools from 42–683% in terms of the number of auto-fixed bugs with only Top-1 ranked patches.
-
-----------
+# Experimental Results: http://zachleat.github.io/BigText/test/test.html
+# Source Code: https://github.com/AutomatedProgramRepair-2021/dear-auto-fix
 
 ## Contents
 1. [Dataset](#Dataset)
@@ -15,6 +12,10 @@ We present DEAR, a DL-based approach that supports auto-fixing for the bugs that
 4. [Code](#Code)
 5. [Instruction](#Instruction)
 5. [Reference](#Reference)
+
+## Introduction
+
+We present DEAR, a DL-based approach that supports auto-fixing for the bugs that require changes at once to one or multiple hunks and one or multiple consecutive statements.We first design a novel fault localization (FL) technique for multi-hunk, multi-statement fixes that combines traditional  spectrum-based (SB) FL with deep learning and data-flow analysis. It takes the buggy statements returned by the SBFL, and detects the buggy hunks to be fixed at once and expands a buggy statement s in a hunk to include other suspicious statements from s. We enhance a two-tier, tree-based LSTM model that incorporates cycle training and uses a divide-andconquer strategy to learn proper code transformations for fixing multiple statements in the suitable fixing context consisting of surrounding subtrees. We conducted several experiments to evaluate DEAR on three datasets: Defects4J (395 bugs), BigFix (+26k bugs), and CPatMiner (+44k bugs). In CPatMiner, DEAR fixes 71 and 164 more bugs, including 52 and 61 more multi-hunk/multistatement bugs, than existing DL-based APR tools. Among 667 fixed bugs, there are 169 (25.3%) multi-hunk/multi-statement ones. On Defects4J, it outperforms those tools from 42–683% in terms of the number of auto-fixed bugs with only Top-1 ranked patches.
 
 ## Dataset
 
