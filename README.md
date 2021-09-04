@@ -6,12 +6,11 @@
 # Source Code: https://github.com/AutomatedProgramRepair-2021/dear-auto-fix
 
 ## Contents
-1. [Dataset](#Dataset)
-2. [Requirement](#Requirement)
-3. [Editable Parameters](#Editable-Parameters)
-4. [Code](#Code)
-5. [Instruction](#Instruction)
-5. [Reference](#Reference)
+## 1. [Dataset](#Dataset)
+## 2. [Requirement](#Requirement)
+## 3. [Editable Parameters](#Editable-Parameters)
+## 4. [Instruction](#Instruction)
+## 5. [Reference](#Reference)
 
 ## Introduction
 
