@@ -1,6 +1,6 @@
 # DEAR: A Novel Deep Learning-based Approach for Automated Program Repair
 
-<p aligh="center"> This repository contains the code for <b>DEAR: A Novel Deep Learning-based Approach for Automated Program Repair</b> </p>
+<p aligh="center"> This repository contains the code for <b>DEAR: A Novel Deep Learning-based Approach for Automated Program Repair</b> and the Page (https://automatedprogramrepair-2021.github.io/DEAR-Public/) that has some visualizd data. </p>
 
 ## Introduction
 
@@ -35,7 +35,7 @@ Before using our tool, please download the two clearned version of data and also
 #### Python <= 3.6
 #### tensorflow >= 1.11.0
 
-Please check all other required packages in the [requirement.txt](https://github.com/autofixresearch/AutoRepairResearch/blob/master/DEAR/approach/requirements.txt)
+Please check all other required packages in the [requirement.txt](https://github.com/AutomatedProgramRepair-2021/dear-auto-fix/tree/main/DEAR/approach/requirements.txt)
 
 ## Editable-Parameters
 
