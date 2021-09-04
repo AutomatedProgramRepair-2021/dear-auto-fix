@@ -11,7 +11,7 @@ tensorflow >= 1.11.0   # CPU Version of TensorFlow.
 msgpack < 1.20.0
 
 ## NumPy python library##
-numpy
+numpy < 1.20.0
 
 ## ProgressBar ##
 progressbar2
