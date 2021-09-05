@@ -30,6 +30,7 @@ Before using our tool, please download the two clearned version of data and also
 
 ## Requirement
 
+#### Javac = 1.8
 #### Java = 1.7
 #### Ant = 1.9
 #### Python <= 3.6
