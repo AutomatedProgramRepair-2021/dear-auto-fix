@@ -21,7 +21,7 @@ def main(argv):
             process.preprocess("cpatminer")
             process.preprocess("bigfix")
         else:
-            if rq != "all":
+            if rq != "all" and rq != "demo":
                 print("Incorrect RQ number!")
                 exit()
     if rq == "1":
@@ -36,6 +36,8 @@ def main(argv):
         cleaned = process.clean_data(output[0], output[1], output[2], output[3])
         prepareed_data = process.data_prepare(cleaned)
         model.model_process(prepareed_data)
+    if rq == "demo":
+        model.demo_process()
     
 
 if __name__ == "__main__":

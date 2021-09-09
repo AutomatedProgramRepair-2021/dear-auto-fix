@@ -13,6 +13,7 @@ import os
 from evaluation import evaluation, get_score
 import subprocess
 import time
+import keras
 
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -88,7 +89,7 @@ def qu_model(input_length, output_length, input_dim, output_dim, hidden_dim, dro
     decoding = Dropout(drop_out)(decoding)
     decoding = Dense(output_dim)(decoding)
     model = Model(input_data, decoding)
-    model.compile(optimizer="adam", loss='categorical_crossentropy')
+    model.compile(optimizer="adam", loss='cosine_similarity')
     return model
 
 
@@ -124,6 +125,10 @@ def model_process(data_group):
    # output_2 = output_2[shuffler]
     data_1 = len(input_1)
     data_2 = len(input_2)
+    test_data_temp = np.array(input_1)
+    test_data_out = np.array(output_1)
+    np.save("data_1.npy", test_data_temp)
+    np.save("data_2.npy", test_data_out)
     training_input_1 = np.array(input_1[:int(data_1*8/10)])
     training_output_1 = np.array(output_1[:int(data_1 * 8 / 10)])
     testing_input_1 = np.array(input_1[int(data_1 * 8 / 10):])
@@ -134,13 +139,14 @@ def model_process(data_group):
     testing_output_2 = np.array(output_2[int(data_2 * 8 / 10):])
     learning_model = qu_model(len(training_input_1[0]), len(training_output_1[0]), 128, 128, 128, 0.5)
     learning_model.fit(training_input_1, training_output_1, batch_size=1, epochs=1)
+    learning_model.save("model")
     output_model_1 = learning_model.predict(testing_input_1)
     learning_model_2 = qu_model(len(training_input_2[0]), len(training_output_2[0]), 128, 128, 128, 0.5)
     learning_model_2.fit(training_input_2, training_output_2, batch_size=1, epochs=1)
     output_model_2 = learning_model_2.predict(testing_input_2)
     try:
         print("Top-1 accuracy on BigFix dataset:")
-        print(get_score(np.ma.reshape(output_model_2, (len(testing_output_2) * len(testing_output_2[0]), 128, )),
+        print(get_score(np.ma.reshape(output_model_2, (len(testing_output_2) * len(testing_output_2[0]), 128)),
                     np.ma.reshape(testing_output_2, (len(testing_output_2) * len(testing_output_2[0]), 128))))
     except Exception as e:
         print("Error in BigFix")
@@ -157,3 +163,18 @@ def model_process(data_group):
     #except Exception as e:
      #   print("Error in Defects4J")
       #  print(e)
+
+
+def demo_process():
+    path_p = os.path.abspath(os.path.dirname(os.getcwd()))
+    input_data = np.load(path_p + "\\data\\demo\\data_1.npy")
+    target_data = np.load(path_p + "\\data\\demo\\data_2.npy")
+    learning_model = keras.models.load_model('model')
+    output_model_1 = learning_model.predict(input_data)
+    try:
+        print("Top-1 accuracy on Demo:")
+        print(get_score(np.ma.reshape(output_model_1, (len(target_data)*len(target_data[0]), 128)),
+                    np.ma.reshape(target_data, (len(target_data)*len(target_data[0]), 128))))
+    except Exception as e:
+        print("Error in Demo")
+        print(e)

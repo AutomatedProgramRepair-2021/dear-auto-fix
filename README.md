@@ -10,7 +10,9 @@
 ## 2. [Requirement](#Requirement)
 ## 3. [Editable Parameters](#Editable-Parameters)
 ## 4. [Instruction](#Instruction)
-## 5. [Reference](#Reference)
+## 5. [Demo](#Demo)
+## 6. [Reference](#Reference)
+
 
 ## Introduction
 
@@ -65,6 +67,11 @@ Please check all other required packages in the [requirement.txt](https://github
 
 8. Run ```main.py```in directory  ```DEAR/approach```
 
+## Demo
+
+For the testing purpose of running, please download our demo that contains the model for fixing a small set of bugs. Demo download: https://drive.google.com/file/d/1pNo8I8_758m02mUsscv6KkeQ7EG_dIMT/view?usp=sharing
+
+Put ```model``` in ```DEAR\approach```, ```demo``` in ```DEAR\data``` and then run ```run_demo.py``` to see the results.
 
 ## Reference
 
