@@ -3,7 +3,7 @@
 <p aligh="center"> This repository contains the code for <b>DEAR: A Novel Deep Learning-based Approach for Automated Program Repair</b> and the Page (https://automatedprogramrepair-2021.github.io/DEAR-Public/) that has some visualizd data. </p>
 
 # Experimental Results and Data: https://automatedprogramrepair-2021.github.io/DEAR-Public/
-# Source Code: https://github.com/AutomatedProgramRepair-2021/dear-auto-fix#Instruction
+# Source Code: https://github.com/AutomatedProgramRepair-2021/dear-auto-fix#Instruction_to_Run_DEAR
 # Demo: https://github.com/AutomatedProgramRepair-2021/dear-auto-fix#Demo
 
 ## Contents
