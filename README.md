@@ -70,7 +70,7 @@ Please check all other required packages in the [requirement.txt](https://github
 
 ## Demo
 
-Tested with {Keras==2.6.0, tensorflow==2.6.0} and {Keras==2.4.3, tensorflow==1.14}.
+Tested with {Keras==2.6.0, tensorflow==2.6.0} and {Keras==2.4.3, tensorflow==1.14}. If you are facing problem, please check your package version.
 
 For the testing purpose of running, please download our demo that contains the model for fixing a small set of bugs. Demo download: https://drive.google.com/file/d/1pNo8I8_758m02mUsscv6KkeQ7EG_dIMT/view?usp=sharing
 
