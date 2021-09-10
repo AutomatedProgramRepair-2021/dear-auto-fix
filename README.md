@@ -10,7 +10,7 @@
 ## 1. [Dataset](#Dataset)
 ## 2. [Requirement](#Requirement)
 ## 3. [Editable Parameters](#Editable-Parameters)
-## 4. [Instruction](#Instruction)
+## 4. [Instruction_to_Run_DEAR](#Instruction_to_Run_DEAR)
 ## 5. [Demo](#Demo)
 ## 6. [Reference](#Reference)
 
@@ -51,7 +51,7 @@ Please check all other required packages in the [requirement.txt](https://github
 
 4. The parameter ```rq``` in the ```main.py``` can be modified for different experiments.
 
-## Instruction
+## Instruction_to_Run_DEAR
 1. Download BigFix and CPatMiner from the given link in [Dataset](#Dataset) to the directory DEAR/data (You need to create the ```data``` folder). Feel free to reduce the size for a small demo.
 
 2. If you have setup ```D4J_HOME```, check if ```DEFECTS4J_HOME``` is also set to point to ```path2defects4j```
