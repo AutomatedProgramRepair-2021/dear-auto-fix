@@ -78,6 +78,7 @@ Put ```model``` in ```DEAR/approach```, ```demo``` in ```DEAR/data```
 change model path in ```DEAR/approach/src/model``` at line 170 if you are using Linux
 run ```run_demo.py``` to see the results.
 
+This demo only contains the fixing part of the project due to the long period of the runtime for full project. The demo is running on a big dataset and follows the same setting in the RQ1 in our paper.
 
 ## Reference
 
