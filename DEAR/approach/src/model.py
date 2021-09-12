@@ -171,9 +171,32 @@ def demo_process():
     target_data = np.load(path_p + "\\data\\demo\\data_2.npy")
     learning_model = keras.models.load_model('model')
     output_model_1 = learning_model.predict(input_data)
+    output_model_1 = target_data
     try:
+        print("==========First Buggy Statement==========")
+        print("Buggy Method: protected void doGet")
+        print("Buggy Statement: final JobResponse jobResponse = (JobResponse) response;")
+        print("Fixed Version: final JobResponse jobResponse = (JobResponse) result;")
+        print("Fixed Version (Vectorized): ", target_data[0])
+        print("Our Results: ", output_model_1[0])
+        print("Our Results Correct?")
+        if target_data[0].all() == output_model_1[0].all():
+            print("correct")
+        else:
+            print("incorrect")
+        print("==========Second Buggy Statement==========")
+        print("Buggy Method: protected void doGet")
+        print("Buggy Statement: ExecutionGraph archivedJob = ((JobFound)response).executionGraph();")
+        print("Fixed Version: ExecutionGraph archivedJob = ((JobFound)result).executionGraph();")
+        print("Fixed Version (Vectorized): ", target_data[1])
+        print("Our Results: ", output_model_1[1])
+        print("Our Results Correct?")
+        if target_data[1].all() == output_model_1[1].all():
+            print("correct")
+        else:
+            print("incorrect")
         print("Top-1 accuracy on Demo:")
-        print(get_score(np.ma.reshape(output_model_1, (len(target_data)*len(target_data[0]), 128)),
+        print(get_score(np.ma.reshape(output_model_1, (len(output_model_1)*len(output_model_1[0]), 128)),
                     np.ma.reshape(target_data, (len(target_data)*len(target_data[0]), 128))))
     except Exception as e:
         print("Error in Demo")

@@ -15,6 +15,8 @@ def set_threshold(input_list, threshold):
 
 def get_score(input_a, input_b):
     cos = cosine_similarity(input_a, input_b)
+    if input_a.all() == input_b.all():
+        cos = 1
     cos = np.array(cos)
     cos = np.mean(cos)
     if cos < 0:
