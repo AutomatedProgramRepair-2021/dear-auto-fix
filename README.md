@@ -76,7 +76,7 @@ For the testing purpose of running, please download our demo that contains the m
 
 Put ```model``` in ```DEAR/approach```, ```demo``` in ```DEAR/data``` 
 
-change model path in ```DEAR/approach/src/model``` at line 170 if you are using Linux
+change model path in ```DEAR/approach/src/model.py``` at line 170 if you are using Linux
 
 run ```run_demo.py``` to see the results.
 
