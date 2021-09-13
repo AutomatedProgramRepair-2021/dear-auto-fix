@@ -74,7 +74,7 @@ Tested with {Keras==2.6.0, tensorflow==2.6.0} and {Keras==2.4.3, tensorflow==1.1
 
 For the testing purpose of running, please download our demo that contains the model for fixing a small set of bugs. Demo download: https://drive.google.com/file/d/1Cof6Zlzc8UxIIcrZ1pMf3foWfYBapXB9/view?usp=sharing
 
-Put ```model``` in ```DEAR/approach```, ```demo``` in ```DEAR/data``` 
+Put ```model``` in ```DEAR/approach```, ```demo``` in ```DEAR/data``` (You need to create the ```data``` folder)
 
 change model path in ```DEAR/approach/src/model.py``` at line 170 if you are using Linux
 
