@@ -70,12 +70,16 @@ Please check all other required packages in the [requirement.txt](https://github
 
 ## Demo
 
+The requirements packages for the demo can also be found in the [requirement.txt](https://github.com/AutomatedProgramRepair-2021/dear-auto-fix/tree/main/DEAR/approach/requirements.txt)
+
 Tested with {Keras==2.6.0, tensorflow==2.6.0} and {Keras==2.4.3, tensorflow==1.14}. If you are facing problem, please check your package version.
 
 For the testing purpose of running, please download our demo that contains the model for fixing a small set of bugs. Demo download: https://drive.google.com/file/d/1pgIX6OlCNVhGBj5ybpyXj6vhFOgLVRZN/view?usp=sharing
 
-Put ```model``` in ```DEAR/approach```, ```demo``` in ```DEAR/data``` 
-change model path in ```DEAR/approach/src/model``` at line 170 if you are using Linux
+Put ```model``` in ```DEAR/approach```, ```demo``` in ```DEAR/data``` (You need to create the ```data``` folder)
+
+change model path in ```DEAR/approach/src/model.py``` at line 170 if you are using Linux
+
 run ```run_demo.py``` to see the results.
 
 This demo only contains the fixing part of the project due to the long period of the runtime for full project. The demo is running on a big dataset and follows the same setting in the RQ1 in our paper.
