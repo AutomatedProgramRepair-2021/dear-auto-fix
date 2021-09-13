@@ -70,6 +70,8 @@ Please check all other required packages in the [requirement.txt](https://github
 
 ## Demo
 
+The requirements packages for the demo can also be found in the [requirement.txt](https://github.com/AutomatedProgramRepair-2021/dear-auto-fix/tree/main/DEAR/approach/requirements.txt)
+
 Tested with {Keras==2.6.0, tensorflow==2.6.0} and {Keras==2.4.3, tensorflow==1.14}. If you are facing problem, please check your package version.
 
 For the testing purpose of running, please download our demo that contains the model for fixing a small set of bugs. Demo download: https://drive.google.com/file/d/1Cof6Zlzc8UxIIcrZ1pMf3foWfYBapXB9/view?usp=sharing
