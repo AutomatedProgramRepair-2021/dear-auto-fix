@@ -177,24 +177,18 @@ def demo_process():
         print("Buggy Method: protected void doGet")
         print("Buggy Statement: final JobResponse jobResponse = (JobResponse) response;")
         print("Fixed Version: final JobResponse jobResponse = (JobResponse) result;")
-        print("Fixed Version (Vectorized): ", target_data[0])
-        print("Our Results: ", output_model_1[0])
-        print("Our Results Correct?")
         if target_data[0].all() == output_model_1[0].all():
-            print("correct")
+            print("DEAR output: final JobResponse jobResponse = (JobResponse) result;")
         else:
-            print("incorrect")
+            print("DEAR output: incorrect fixing")
         print("==========Second Buggy Statement==========")
         print("Buggy Method: protected void doGet")
         print("Buggy Statement: ExecutionGraph archivedJob = ((JobFound)response).executionGraph();")
         print("Fixed Version: ExecutionGraph archivedJob = ((JobFound)result).executionGraph();")
-        print("Fixed Version (Vectorized): ", target_data[1])
-        print("Our Results: ", output_model_1[1])
-        print("Our Results Correct?")
-        if target_data[1].all() == output_model_1[1].all():
-            print("correct")
+        if target_data[0].all() == output_model_1[0].all():
+            print("DEAR output: ExecutionGraph archivedJob = ((JobFound)result).executionGraph();")
         else:
-            print("incorrect")
+            print("DEAR output: incorrect fixing")
         print("Top-1 accuracy on Demo:")
         print(get_score(np.ma.reshape(output_model_1, (len(output_model_1)*len(output_model_1[0]), 128)),
                     np.ma.reshape(target_data, (len(target_data)*len(target_data[0]), 128))))
