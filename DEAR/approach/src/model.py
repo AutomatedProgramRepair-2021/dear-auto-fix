@@ -174,7 +174,16 @@ def demo_process():
     output_model_1 = target_data
     try:
         print("==========First Buggy Statement==========")
-        print("Buggy Method: protected void doGet")
+        print("Buggy Method: ")
+        print("@Override")
+        print("protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {")
+        print("    ......")
+        print("    if(!(result instanceof JobResponse)){")
+        print("        throw new RuntimeException(\"RequestJob requires a response of type JobResponse. \" + \"Instead the response is of type \" + result.getClass());")
+        print("    }else {")
+        print("        final JobResponse jobResponse = (JobResponse) response;    (BUGGY)")
+        print("    ......")
+        print("}")
         print("Buggy Statement: final JobResponse jobResponse = (JobResponse) response;")
         print("Fixed Version: final JobResponse jobResponse = (JobResponse) result;")
         if target_data[0].all() == output_model_1[0].all():
@@ -182,16 +191,27 @@ def demo_process():
         else:
             print("DEAR output: incorrect fixing")
         print("==========Second Buggy Statement==========")
-        print("Buggy Method: protected void doGet")
+        print("Buggy Method: ")
+        print("@Override")
+        print("protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {")
+        print("    ......")
+        print("    if(jobResponse instanceof JobFound){")
+        print("        ExecutionGraph archivedJob = ((JobFound)response).executionGraph();    (BUGGY)")
+        print("        writeJsonForArchivedJob(resp.getWriter(), archivedJob);")
+        print("    }else {")
+        print("        LOG.warn(\"DoGet:job: Could not find job for job ID \" + jobId);")
+        print("    }")
+        print("    ......")
+        print("}")
         print("Buggy Statement: ExecutionGraph archivedJob = ((JobFound)response).executionGraph();")
         print("Fixed Version: ExecutionGraph archivedJob = ((JobFound)result).executionGraph();")
         if target_data[0].all() == output_model_1[0].all():
             print("DEAR output: ExecutionGraph archivedJob = ((JobFound)result).executionGraph();")
         else:
             print("DEAR output: incorrect fixing")
-        print("Top-1 accuracy on Demo:")
-        print(get_score(np.ma.reshape(output_model_1, (len(output_model_1)*len(output_model_1[0]), 128)),
-                    np.ma.reshape(target_data, (len(target_data)*len(target_data[0]), 128))))
+        #print("Top-1 accuracy on Demo:")
+        #print(get_score(np.ma.reshape(output_model_1, (len(output_model_1)*len(output_model_1[0]), 128)),
+        #            np.ma.reshape(target_data, (len(target_data)*len(target_data[0]), 128))))
     except Exception as e:
         print("Error in Demo")
         print(e)
